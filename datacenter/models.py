@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import datetime, timedelta
 
 
 class Passcard(models.Model):
@@ -25,3 +26,18 @@ class Visit(models.Model):
             entered=self.entered_at,
             leaved= "leaved at " + str(self.leaved_at) if self.leaved_at else "not leaved"
         )
+
+    def get_duration(self):
+        if self.leaved_at is None:
+            delta = datetime.now() - self.entered_at.replace(tzinfo=None)
+        else:
+            delta = self.leaved_at - self.entered_at
+        return delta
+
+    def is_visit_long(self, minutes=60):
+        delta = self.get_duration()
+        long_delta = timedelta(seconds=minutes * 60)
+        if delta > long_delta:
+            return True
+        else:
+            return False
