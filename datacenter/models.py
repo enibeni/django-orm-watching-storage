@@ -30,13 +30,12 @@ class Visit(models.Model):
     def get_duration(self):
         if self.leaved_at is None:
             delta = datetime.now() - self.entered_at.replace(tzinfo=None)
-            duration = delta.seconds
+            duration = delta.total_seconds()
         else:
             delta = self.leaved_at - self.entered_at
-            duration = delta.seconds
+            duration = delta.total_seconds()
         return duration
 
     def is_visit_long(self, minutes=60):
-        delta = self.get_duration()
-        long_delta = timedelta(seconds=minutes * 60).seconds
-        return delta > long_delta
+        long_duration = minutes * 60
+        return self.get_duration() > long_duration
