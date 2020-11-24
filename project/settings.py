@@ -16,8 +16,6 @@ INSTALLED_APPS = ['datacenter']
 
 SECRET_KEY = 'REPLACE_ME'
 
-print(f"******{os.getenv('DEBUG', default=False)}")
-print(f"******{type(os.getenv('DEBUG', default=False))}")
 DEBUG = distutils.util.strtobool(os.getenv("DEBUG", default="False"))
 
 ROOT_URLCONF = "project.urls"
