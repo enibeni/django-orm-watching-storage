@@ -5,7 +5,7 @@ This based on Djanogo framework website provides tools to keep a log of bank res
 ### How to install
 
 To use this script you should provide keys to establish connection with bank database in .env file:
-- DB_ENGIN
+- DB_ENGINE
 - DB_HOST
 - DB_PORT
 - DB_NAME
@@ -22,7 +22,7 @@ pip install -r requirements.txt
 
 to start website locally just run this command
 ```bash
-$ python3 main.py
+$ python3 manage.py
 ```
 
 The website will be available in browser at http://0.0.0.0:8000/
